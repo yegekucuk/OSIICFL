@@ -1,11 +1,13 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <string>
 #include "Logger.h"
 
 // Global variables
 int numberOfMessages;
 int numberOfThreads;
+std::string fileName;
 
 // Function that will be executed by each thread
 void threadFunction(Logger &logger, int threadId)
@@ -18,16 +20,22 @@ void threadFunction(Logger &logger, int threadId)
     }
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    // Take the number of threads and number of messages for each thread
-    std::cout << "Enter the number of threads: ";
-    std::cin >> numberOfThreads;
-    std::cout << "Enter the number of messages from each thread: ";
-    std::cin >> numberOfMessages;
+    // Check if the correct number of arguments are provided
+    if (argc != 4)
+    {
+        std::cerr << "Usage: " << argv[0] << " <file_name> <number_of_threads> <number_of_messages>" << std::endl;
+        return 1;
+    }
 
-    // Create a logger object that writes to log.txt
-    Logger logger("log.txt");
+    // Assign the arguments to the variables
+    fileName = argv[1];
+    numberOfThreads = std::stoi(argv[2]);
+    numberOfMessages = std::stoi(argv[3]);
+
+    // Create a logger object that writes to the specified file
+    Logger logger(fileName);
     
     // Create a vector to hold the thread objects
     std::vector<std::thread> threads;

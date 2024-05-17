@@ -9,8 +9,8 @@ class Logger
         Logger(const std::string &filename);
         ~Logger();
         void log(const std::string &message);
+        std::ofstream fileStream;
 
     private:
-        std::ofstream fileStream;
         std::mutex mtx;
 };
