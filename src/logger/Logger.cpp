@@ -3,7 +3,7 @@
 // Constructor
 Logger::Logger(const std::string &filename)
 {
-    fileStream.open(filename, std::ofstream::out | std::ofstream::app);
+    fileStream.open(filename, std::ofstream::out | std::ofstream::trunc);
 }
 
 // Destructor
