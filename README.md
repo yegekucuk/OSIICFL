@@ -1,4 +1,4 @@
-# OSIICFL
+# Concurrent File Logger for Operating Systems II
 
 ## Table of Contents
 - [Introduction](#introduction)
